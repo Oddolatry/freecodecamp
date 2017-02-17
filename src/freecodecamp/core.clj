@@ -7,10 +7,6 @@
             [compojure.route :refer [resources not-found]]
             [ring.middleware.reload :refer [wrap-reload]]))
 
-(defn handler
-  [req]
-  (response/ok (:remote-addr req)))
-
 (defroutes routes
   (GET "/" [] (response/ok (landing/contents)))
   (GET "/tribute" [] (response/ok (tribute/contents)))
@@ -20,5 +16,5 @@
 (defn -main
   [& args]
   (jetty/run-jetty
-   (-> #'routes wrap-reload)
+   (wrap-reload #'routes)
    {:port 3000 :join? false}))
