@@ -1,0 +1,9 @@
+.splash {
+    font-size: 3em;
+    color: black;
+    background-color: lightblue;
+    border-radius: 10px;
+    margin: 0 0 1em 0;
+    padding: 0.5em;
+    box-shadow: 0 0.2em 0.2em grey;
+}
