@@ -10,6 +10,7 @@
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
     [:title "freeCodeCamp Project Landing"]
     (p/include-css "css/bootstrap.css")
+    (p/include-css "css/base.css")
     (p/include-js  "js/bootstrap.js")] ;; need jquery
    body))
 

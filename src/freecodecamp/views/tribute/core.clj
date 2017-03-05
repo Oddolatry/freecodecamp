@@ -6,10 +6,41 @@
                                                bootstrap-head]]))
 
 ;; To Do
-;; - Create reusable components
 ;; - Hammer out some content
-;; - Move inline styling / other styling to base.css
 ;; - See about styling outside of the Bootstrap fluid container
+
+(defn row-section-header
+  "Embeds `element` between single left and right gutters."
+  [element]
+  [:div.row
+   [:div.col-md-10.col-md-offset-1.col-sm-10.col-sm-offset-1
+    element]])
+
+(defn row-section-rev-blockquote
+  "Reverse aligned blockquote."
+  [quote footer title citation]
+  [:div.row
+   [:div.col-md-6.col-md-offset-4.col-sm-6.col-sm-offset-4
+    [:blockquote.blockquote-reverse
+     [:p quote]
+     [:footer footer
+      [:br]
+      [:cite {:title title} (str " " citation)]]]]])
+
+(defn row-section-title
+  "Intended to turn all-caps string into lead-cap and small-caps."
+  [title]
+  (let [[fst & rst] title]
+    [:div.row
+     [:div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+      [:p.lead (str fst) [:small (apply str rst)]]]]))
+
+(defn row-section-content
+  "Embeds `element` in narrowly guttered column."
+  [element]
+  [:div.row
+   [:div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+    element]])
 
 (defn contents
   []
@@ -17,35 +48,20 @@
    (fluid-body
     [:br]
     [:div.row
-     [:div.col-md-10.col-md-offset-1.col-sm-10.col-sm-offset-1
-      {:style "background:#FCFBE3"} ;; move to base.css
-      [:div.row
-       [:div.col-md-10.col-md-offset-1.col-sm-10.col-sm-offset-1
-        [:h1.text-center "Ada Lovelace"]]]
-      [:div.row
-       [:div.col-md-10.col-md-offset-1.col-sm-10.col-sm-offset-1
-        (e/image
-         {:class "center-block img-responsive"
-          :style "box-shadow:10px 10px 5px #888"} ;; move to base.css
-         "images/tribute/header_ada.jpg")]]
+     [:div.col-md-10.col-md-offset-1.col-sm-10.col-sm-offset-1.cream-bg
+      (row-section-header [:h1.text-center "Ada Lovelace"])
+      (row-section-header (e/image
+                           {:class "center-block img-responsive box-shadow-lr"}
+                           "images/tribute/header_ada.jpg"))
       [:br]
-      [:div.row
-       [:div.col-md-6.col-md-offset-4.col-sm-6.col-sm-offset-4
-        [:blockquote.blockquote-reverse
-         [:p "She did an important thing."]
-         [:footer "Someone Who Said This in "
-          [:cite {:title "This Book"} "This Book"]]]]]
-      [:div.row
-       [:div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
-        [:p.lead "T" [:small "HE FIRST PROGRAMMER"]]]]
-      [:div.row
-       [:div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
-        [:p "She did all of these awesome things. Test. She did all of these awesome things. Test. She did all of these awesome things. Test. She did all of these awesome things. Test."]]]
-      [:div.row
-       [:div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
-        [:p.lead "A" [:small "CCOMPLISHMENTS"]]]]
-      [:div.row
-       [:div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
-        [:ul
-         [:li "List things"]
-         [:li "That Are Cool"]]]]]])))
+      (row-section-rev-blockquote
+       "That brain of mine is something more than merely mortal, as time will show."
+       "Ada Augusta, Countess of Lovelace"
+       ""
+       "")
+      (row-section-title "THE FIRST PROGRAMMER")
+      (row-section-content [:p "She did all of these awesome things. Test. She did all of these awesome things. Test. She did all of these awesome things. Test. She did all of these awesome things. Test."])
+      (row-section-title "ACCOMPLISHMENTS")
+      (row-section-content [:ul
+                            [:li "List things"]
+                            [:li "That Are Cool"]])]])))
