@@ -1,4 +1,4 @@
-(ns freecodecamp.common
+(ns freecodecamp.utils.common
   (:require [hiccup.core    :as h]
             [hiccup.page    :as p]
             [hiccup.element :as e]))
@@ -12,3 +12,8 @@
     (p/include-css "css/bootstrap.css")
     (p/include-js  "js/bootstrap.js")] ;; need jquery
    body))
+
+(defn fluid-body
+  [& body]
+  (conj [:body]
+        (into [:div.container-fluid] body)))

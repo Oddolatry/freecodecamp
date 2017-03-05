@@ -1,11 +1,11 @@
 (ns freecodecamp.core
-  (:require [freecodecamp.landing :as landing]
-            [freecodecamp.tribute.core :as tribute]
-            [ring.adapter.jetty :as jetty]
-            [ring.util.http-response :as response]
-            [compojure.core :refer [GET defroutes]]
-            [compojure.route :refer [resources not-found]]
-            [ring.middleware.reload :refer [wrap-reload]]))
+  (:require [freecodecamp.views.landing      :as landing]
+            [freecodecamp.views.tribute.core :as tribute]
+            [ring.adapter.jetty              :as jetty]
+            [ring.util.http-response         :as response]
+            [compojure.core                  :refer [GET defroutes]]
+            [compojure.route                 :refer [resources not-found]]
+            [ring.middleware.reload          :refer [wrap-reload]]))
 
 (defroutes routes
   (GET "/" [] (response/ok (landing/contents)))

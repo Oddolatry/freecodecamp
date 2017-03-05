@@ -1,8 +1,8 @@
-(ns freecodecamp.landing
+(ns freecodecamp.views.landing
   (:require [hiccup.core    :as h]
             [hiccup.page    :as p]
             [hiccup.element :as e]
-            [freecodecamp.common :refer [bootstrap-head]]))
+            [freecodecamp.utils.common :refer [bootstrap-head]]))
 
 (defn contents
   []
